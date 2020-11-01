@@ -30,7 +30,19 @@ exports.login = (email, password) => {
             } 
             else {
                 console.log(result);
-                res(true);
+                let resObj = {
+                    phone: result.phone,
+                    salaryPerHour: result.salaryPerHour,
+                    address: result.address,
+                    firstname: result.firstname,
+                    lastname: result.lastname,
+                    age: result.age,
+                    photo: result.photo,
+                    email: result.email,
+                    creationdate: result.creationdate,
+                    isAdmin: result.isAdmin
+                };
+                res(resObj);
             }
         });   
     })   
