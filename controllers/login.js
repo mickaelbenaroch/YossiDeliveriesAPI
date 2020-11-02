@@ -18,7 +18,9 @@ route.post('/newuser', (req, res) => {
         email:          req.body.email,
         salaryPerHour: req.body.salaryPerHour,
         creationdate: new Date(),
-        pass: req.body.pass
+        pass: req.body.pass,
+        isAdmin: req.body.isAdmin,
+        notes: req.body.notes
     };
 
     login.signup(profile).then((data) => {

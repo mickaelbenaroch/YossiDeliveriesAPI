@@ -40,7 +40,8 @@ exports.login = (email, password) => {
                     photo: result.photo,
                     email: result.email,
                     creationdate: result.creationdate,
-                    isAdmin: result.isAdmin
+                    isAdmin: result.isAdmin,
+                    notes: result.notes
                 };
                 res(resObj);
             }
