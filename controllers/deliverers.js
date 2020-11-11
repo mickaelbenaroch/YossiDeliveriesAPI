@@ -29,7 +29,8 @@ route.post('/sethour', (req, res) => {
         total: req.body.total,
         userPhone: req.body.userPhone,
         userEmail: req.body.userEmail,
-        wasPayed: req.body.wasPayed
+        wasPayed: req.body.wasPayed,
+        money: req.body.money
     }
     list.setHour(obj).then((data) => {
         res.status(200).json({data: data});   
