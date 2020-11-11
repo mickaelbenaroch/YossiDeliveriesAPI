@@ -28,9 +28,26 @@ route.post('/sethour', (req, res) => {
         endHour: req.body.endHour,
         total: req.body.total,
         userPhone: req.body.userPhone,
-        userEmail: req.body.userEmail
+        userEmail: req.body.userEmail,
+        wasPayed: req.body.wasPayed
     }
     list.setHour(obj).then((data) => {
+        res.status(200).json({data: data});   
+        res.end(); 
+    }).catch((err) => {
+        res.json({isOk: false, error: err})
+        res.status(500)
+        res.end()
+    });
+});
+
+route.post('/gethours', (req, res) => {
+    let obj = {
+        userEmail: req.body.email,
+        userPhone: req.body.phone,
+        isAdmin: req.body.isAdmin
+    }
+    list.getHours(obj).then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {

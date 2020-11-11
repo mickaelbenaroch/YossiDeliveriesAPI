@@ -36,3 +36,24 @@ exports.setHour = (model) => {
         });
     });
 }
+
+exports.getHours = (obj) => {
+    return new Promise(( res, rej) => {
+        let hour = db.get().collection('hours');
+        if (obj && obj.isAdmin) {
+            hour.find().toArray((err, result) =>{
+                if(err || result === undefined || result.length == 0)
+                    rej("error to get all hours")
+                else
+                    res(result);
+            });
+        } else {
+            hour.find({userEmail: obj.userEmail, userPhone: obj.userPhone}).toArray((err, result) =>{
+                if(err || result === undefined || result.length == 0)
+                    rej("error to get hours for" + obj.userEmail)
+                else
+                    res(result);
+            });
+        }
+    });
+}
