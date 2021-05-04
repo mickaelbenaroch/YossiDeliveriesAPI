@@ -28,7 +28,7 @@ exports.login = (email, password) => {
             if(err || result === null || result === undefined) {
                 rej('Email or Password is incorrect');
             } 
-            else {
+            else {  
                 let resObj = {  
                     phone: result.phone, 
                     salaryPerHour: result.salaryPerHour,
