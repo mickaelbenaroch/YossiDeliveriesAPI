@@ -7,6 +7,12 @@ const login           = require('../models/login');
 //Details - signup new user
 //require - user & pwd 
 //return  - boolean, true/false
+route.get('/test', (req, res) => {
+    res.status(200).send('ok');   
+    res.end(); 
+});
+
+
 route.post('/newuser', (req, res) => {
     let profile = {
         phone:       req.body.phone, 
