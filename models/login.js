@@ -30,7 +30,7 @@ exports.login = (email, password) => {
             } 
             else {
                 let resObj = {
-                    phone: result.phone,
+                    phone: result.phone, 
                     salaryPerHour: result.salaryPerHour,
                     address: result.address,
                     firstname: result.firstname,
