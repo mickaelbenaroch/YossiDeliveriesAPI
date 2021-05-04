@@ -29,7 +29,7 @@ exports.login = (email, password) => {
                 rej('Email or Password is incorrect');
             } 
             else {
-                let resObj = {
+                let resObj = {  
                     phone: result.phone, 
                     salaryPerHour: result.salaryPerHour,
                     address: result.address,
