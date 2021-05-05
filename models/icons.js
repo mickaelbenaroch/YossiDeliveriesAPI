@@ -5,9 +5,9 @@ let db = require('./db');
 //get all deliverers
 exports.getIcons = () => {
     return new Promise(( res, rej) => {
-        let profile = db.get().collection('icons');
+        let icons = db.get().collection('icons');
 
-        profile.find().toArray((err, result) =>{
+        icons.find().toArray((err, result) =>{
             if(err || result === undefined || result.length == 0)
                 rej("error to get icons")
             else
