@@ -27,7 +27,7 @@ route.post('/newcar', (req, res) => {
 });
 
 route.get('/cars', (req, res) => {
-    list.getCars().then((data) => {
+    cars.getCars().then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {
