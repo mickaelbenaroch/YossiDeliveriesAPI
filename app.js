@@ -7,8 +7,6 @@ db_model       = db.db_model,
 bodyParser     = corss.bodyParser,
 cors           = corss.cors_parser
 
-app.use(express.static('public'))
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
