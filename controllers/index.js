@@ -5,6 +5,6 @@ const express = require('express'),
 router        = express.Router();
 
 router.use('/login',        require('./login'));
-router.use('/deliverers',        require('./deliverers'));
+router.use('/icons',        require('./icons'));
 
 module.exports = router

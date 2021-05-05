@@ -3,13 +3,13 @@
 let db = require('./db'); 
 
 //get all deliverers
-exports.getDeliverers = () => {
+exports.getIcons = () => {
     return new Promise(( res, rej) => {
-        let profile = db.get().collection('user');
+        let profile = db.get().collection('icons');
 
         profile.find().toArray((err, result) =>{
             if(err || result === undefined || result.length == 0)
-                rej("error to get profiles")
+                rej("error to get icons")
             else
                 res(result);
         });

@@ -2,13 +2,13 @@
 
 const express         = require('express');
 const route           = express.Router();
-const list           = require('../models/deliverers');
+const list           = require('../models/icons');
 
 //Details - signup new user
 //require - user & pwd 
 //return  - boolean, true/false
-route.get('/list', (req, res) => {
-    list.getDeliverers().then((data) => {
+route.get('/icons', (req, res) => {
+    list.getIcons().then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {

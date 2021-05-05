@@ -10,7 +10,7 @@ module.exports = {
       db_model:  require('../models/db'),
       connection: {
         uri:      'mongodb+srv://sapo:shenkar_4@cluster0-nxqzu.mongodb.net/test?retryWrites=true&w=majority',
-        database: 'yoss-deliveries',
+        database: 'nuricarapidb',
       }
     },
     corss: {
