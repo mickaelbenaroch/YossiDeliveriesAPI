@@ -2,34 +2,32 @@
 
 const express         = require('express');
 const route           = express.Router();
-const login           = require('../models/login');
-
-//Details - signup new user
-//require - user & pwd 
-//return  - boolean, true/false
-route.get('/test', (req, res) => {
-    res.status(200).send('ok');   
-    res.end(); 
-});
+const cars           = require('../models/cars');
 
 
-route.post('/newuser', (req, res) => {
-    let profile = {
-        phone:       req.body.phone, 
-        firstname: req.body.firstname,
-        lastname:  req.body.lastname,
-        age:        req.body.age,
-        photo:      req.body.photo,
-        address:       req.body.address,
-        email:          req.body.email,
-        salaryPerHour: req.body.salaryPerHour,
-        creationdate: new Date(),
-        pass: req.body.pass,
-        isAdmin: req.body.isAdmin,
-        notes: req.body.notes
+route.post('/newcar', (req, res) => {
+    let car = {
+        title:              req.body.title, 
+        modelName:          req.body.modelName,
+        years:              req.body.years,
+        icons:              req.body.icons,
+        isHybrid:           req.body.isHybrid,
+        englishModelName:   req.body.englishModelName,
+        notes:              req.body.notes
     };
 
-    login.signup(profile).then((data) => {
+    cars.createCar(car).then((data) => {
+        res.status(200).json({data: data});   
+        res.end(); 
+    }).catch((err) => {
+        res.json({isOk: false, error: err})
+        res.status(500)
+        res.end()
+    });
+});
+
+route.get('/cars', (req, res) => {
+    list.getCars().then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {
