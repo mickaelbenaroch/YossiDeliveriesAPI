@@ -11,7 +11,7 @@ exports.connect = (url, done) => {
     MongoClient.connect(url,{ useNewUrlParser: true }, (err, client) => {
         if(err) return done(err);
         console.log("Connect to MongoDB");
-        collection.db = client.db('yoss-deliveries');
+        collection.db = client.db('nuricarapidb');
         done();
     });
 }
