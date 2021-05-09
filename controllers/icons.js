@@ -18,21 +18,17 @@ route.get('/icons', (req, res) => {
     });
 });
 
-route.post('/sethour', (req, res) => {
+route.post('/update', (req, res) => {
     let obj = {
-        dayOfWeek: req.body.dayOfWeek,
-        day: req.body.day,
-        month: req.body.month,
-        year: req.body.year,
-        startHour: req.body.startHour,
-        endHour: req.body.endHour,
-        total: req.body.total,
-        userPhone: req.body.userPhone,
-        userEmail: req.body.userEmail,
-        wasPayed: req.body.wasPayed,
-        money: req.body.money
+        _id: req.body._id,
+        title: req.body.title,
+        description: req.body.description,
+        paths: req.body.paths,
+        severity: req.body.severity,
+        suggestion: req.body.suggestion,
+        more: req.body.more
     }
-    list.setHour(obj).then((data) => {
+    list.updateCar(obj).then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {
