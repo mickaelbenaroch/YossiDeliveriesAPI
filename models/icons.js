@@ -19,7 +19,7 @@ exports.getIcons = () => {
 exports.updateCar = (model) => {
     let icon = db.get().collection('icons');
     return new Promise(( res, rej) => {
-        icon.updateOne({_id: id}, {$set: model}, (err, result) =>{
+        icon.updateOne({_id: model._id}, {$set: model}, (err, result) =>{
             if(err || result === undefined || result.length == 0)
                 rej("error to update icon")
             else
