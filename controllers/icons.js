@@ -20,7 +20,6 @@ route.get('/icons', (req, res) => {
 
 route.post('/update', (req, res) => {
     let obj = {
-        _id: req.body._id,
         title: req.body.title,
         description: req.body.description,
         paths: req.body.paths,
@@ -28,7 +27,7 @@ route.post('/update', (req, res) => {
         suggestion: req.body.suggestion,
         more: req.body.more
     }
-    list.updateCar(obj).then((data) => {
+    list.updateCar(obj, req.body._id).then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {
