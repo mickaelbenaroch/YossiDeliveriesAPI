@@ -35,23 +35,18 @@ exports.updateCar = (model, id) => {
     });
 }
 
-exports.getHours = (obj) => {
+exports.updateMissing = (obj) => {
     return new Promise(( res, rej) => {
-        let hour = db.get().collection('hours');
-        if (obj && obj.isAdmin) {
-            hour.find().toArray((err, result) =>{
-                if(err || result === undefined || result.length == 0)
-                    rej("error to get all hours")
-                else
-                    res(result);
-            });
-        } else {
-            hour.find({userEmail: obj.userEmail, userPhone: obj.userPhone}).toArray((err, result) =>{
-                if(err || result === undefined || result.length == 0)
-                    rej("error to get hours for" + obj.userEmail)
-                else
-                    res(result);
-            });
-        }
+        let miss = db.get().collection('missing');
+        miss.insertOne(obj, (res, err) => {
+            if(err || res === undefined || (res && res.length == 0)) {
+                console.log("here error : " + err);
+                rej("error to create missing")
+            }
+            else {
+                console.log("no error");
+                res(res);
+            }
+        });
     });
 }

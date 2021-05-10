@@ -37,13 +37,12 @@ route.post('/update', (req, res) => {
     });
 });
 
-route.post('/gethours', (req, res) => {
+route.post('/missing', (req, res) => {
     let obj = {
-        userEmail: req.body.email,
-        userPhone: req.body.phone,
-        isAdmin: req.body.isAdmin
+        picture: req.body.picture,
+        text: req.body.text
     }
-    list.getHours(obj).then((data) => {
+    list.updateMissing(obj).then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {
