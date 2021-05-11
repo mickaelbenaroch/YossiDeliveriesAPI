@@ -37,16 +37,15 @@ exports.updateCar = (model, id) => {
 
 exports.createMissing = (obj) => {
     return new Promise(( res, rej) => {
-        let miss = db.get().collection('missing');
-        miss.insertOne(obj, (res, err) => {
-            if(err || res === undefined || (res && res.length == 0)) {
-                console.log("here error : " + err);
-                rej("error to create missing")
-            }
-            else {
-                console.log("no error");
-                res(res);
-            }
-        });
+        let reject = rej, response = res;
+        let new_car = db.get().collection('missing');
+        new_car.insertOne(obj, (err, result) => {
+                if(err){
+                    reject("error to create new car")
+                }
+                else{
+                    response(true)
+                }
+            });
     });
 }
