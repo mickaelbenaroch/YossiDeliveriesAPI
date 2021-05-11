@@ -40,9 +40,11 @@ route.post('/update', (req, res) => {
 route.post('/missing', (req, res) => {
     let obj = {
         picture: req.body.picture,
-        text: req.body.text
+        text: req.body.text,
+        date: req.body.date,
+        isNew: req.body.isNew
     }
-    list.updateMissing(obj).then((data) => {
+    list.createMissing(obj).then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {

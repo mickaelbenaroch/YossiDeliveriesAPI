@@ -35,7 +35,7 @@ exports.updateCar = (model, id) => {
     });
 }
 
-exports.updateMissing = (obj) => {
+exports.createMissing = (obj) => {
     return new Promise(( res, rej) => {
         let miss = db.get().collection('missing');
         miss.insertOne(obj, (res, err) => {
