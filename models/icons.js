@@ -46,6 +46,24 @@ exports.updateCar = (model, id) => {
     });
 }
 
+exports.markAsRead = (model) => {
+    let icon = db.get().collection('missing');
+    let o_id = new ObjectId(model._id);
+    return new Promise(( res, rej) => {
+        icon.updateOne({_id: o_id }, {$set: {isNew: model.isNew}}, (err, result) =>{
+            if(err || result === undefined || (result && result.length == 0)) {
+                console.log("here error : " + err);
+                rej("error to update icon missing as read")
+            }
+            else {
+                console.log("no error");
+                res(result);
+            }
+        });
+    });
+}
+
+
 exports.createMissing = (obj) => {
     return new Promise(( res, rej) => {
         let reject = rej, response = res;

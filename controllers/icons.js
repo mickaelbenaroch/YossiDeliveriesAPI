@@ -45,6 +45,21 @@ route.post('/update', (req, res) => {
     });
 });
 
+route.post('/markasread', (req, res) => {
+    let obj = {
+        _id: req.body._id,
+        isNew: req.body.isNew
+    }
+    list.markAsRead(obj).then((data) => {
+        res.status(200).json({data: data});   
+        res.end(); 
+    }).catch((err) => {
+        res.json({isOk: false, error: err})
+        res.status(500)
+        res.end()
+    });
+});
+
 route.post('/missing', (req, res) => {
     let obj = {
         picture: req.body.picture,
