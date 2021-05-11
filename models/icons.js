@@ -7,7 +7,18 @@ let ObjectId = require('mongodb').ObjectId;
 exports.getIcons = () => {
     return new Promise(( res, rej) => {
         let icons = db.get().collection('icons');
+        icons.find().toArray((err, result) =>{
+            if(err || result === undefined || result.length == 0)
+                rej("error to get icons")
+            else
+                res(result);
+        });
+    });
+}
 
+exports.getMissingIcons = () => {
+    return new Promise(( res, rej) => {
+        let icons = db.get().collection('missing');
         icons.find().toArray((err, result) =>{
             if(err || result === undefined || result.length == 0)
                 rej("error to get icons")
