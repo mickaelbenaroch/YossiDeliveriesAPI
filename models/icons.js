@@ -89,6 +89,7 @@ exports.createMissing = (obj) => {
                     reject("error to create new car")
                 }
                 else{
+                    console.log('pass: ' + process.env.EMAILP);
                     transporter.sendMail(mailOptions, function(error, info){
                         if (error) {
                           console.log(error);
@@ -97,7 +98,7 @@ exports.createMissing = (obj) => {
                           response(true)
                           console.log('Email sent: ' + info.response);
                         }
-                      });
+                    });
                 }
             });
     });
