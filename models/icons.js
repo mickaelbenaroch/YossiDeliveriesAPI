@@ -19,6 +19,14 @@ var mailOptions = {
   text: 'משתמש הוסיף הערה לכבי נורית הזהרה שחסרה. ראה פרטים במערכת הניהול.'
 };
 
+var mailOptions2 = {
+    from: 'mickaelbenaroch@gmail.com',
+    to: 'nehorayozer@gmail.com',
+    subject: 'פנייה חדשה ממשתמש NURICAR',
+    text: 'משתמש הוסיף הערה לכבי נורית הזהרה שחסרה. ראה פרטים במערכת הניהול.'
+  };
+
+
 //get all deliverers
 exports.getIcons = () => {
     return new Promise(( res, rej) => {
@@ -95,8 +103,14 @@ exports.createMissing = (obj) => {
                           console.log(error);
                           reject("error to create new car and send email" + error);
                         } else {
-                          response(true)
-                          console.log('Email sent: ' + info.response);
+                            transporter.sendMail(mailOptions2, function(error, info){
+                                if (error) {
+                                  console.log(error);
+                                  reject("error to create new car and send email" + error);
+                                } else {
+                                  response(true)
+                                }
+                            });
                         }
                     });
                 }
