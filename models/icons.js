@@ -2,6 +2,22 @@
 
 let db = require('./db'); 
 let ObjectId = require('mongodb').ObjectId;
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'mickaelbenaroch@gmail.com',
+    pass: process.env.EMAILP
+  }
+});
+
+var mailOptions = {
+  from: 'mickaelbenaroch@gmail.com',
+  to: 'mickaelbenaroch@yahoo.fr',
+  subject: 'פנייה חדשה ממשתמש NURICAR',
+  text: 'משתמש הוסיף הערה לכבי נורית הזהרה שחסרה. ראה פרטים במערכת הניהול.'
+};
 
 //get all deliverers
 exports.getIcons = () => {
@@ -73,8 +89,17 @@ exports.createMissing = (obj) => {
                     reject("error to create new car")
                 }
                 else{
-                    response(true)
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                          console.log(error);
+                          reject("error to create new car and send email" + error);
+                        } else {
+                          response(true)
+                          console.log('Email sent: ' + info.response);
+                        }
+                      });
                 }
             });
     });
 }
+
