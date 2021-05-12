@@ -5,7 +5,7 @@ let ObjectId = require('mongodb').ObjectId;
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'Gmail',
   auth: {
     user: 'mickaelbenaroch@gmail.com',
     pass: process.env.EMAILP
