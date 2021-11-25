@@ -97,21 +97,6 @@ exports.createMissing = (obj) => {
                     reject("error to create new car")
                 }
                 else{
-                    res('new icon has been created successfully!');
-                }
-            });
-    });
-}
-
-exports.createIcon = (obj) => {
-    return new Promise(( res, rej) => {
-        let reject = rej, response = res;
-        let new_car = db.get().collection('icons');
-        new_car.insertOne(obj, (err, result) => {
-                if(err){
-                    reject("error to create new car")
-                }
-                else{
                     console.log('pass: ' + process.env.EMAILP);
                     transporter.sendMail(mailOptions, function(error, info){
                         if (error) {
@@ -128,6 +113,22 @@ exports.createIcon = (obj) => {
                             });
                         }
                     });
+                }
+            });
+    });
+}
+
+exports.createIcon = (obj) => {
+    return new Promise(( res, rej) => {
+        let reject = rej, response = res;
+        let new_car = db.get().collection('icons');
+        new_car.insertOne(obj, (err, result) => {
+                if(err){
+                    reject("error to create new car")
+                }
+                else{
+                    console.log('pass: ' + process.env.EMAILP);
+                   res("new icon added succesfully!")
                 }
             });
     });
