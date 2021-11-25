@@ -45,6 +45,25 @@ route.post('/update', (req, res) => {
     });
 });
 
+route.post('/createIcon', (req, res) => {
+    let obj = {
+        title: req.body.title,
+        description: req.body.description,
+        paths: req.body.paths,
+        severity: req.body.severity,
+        suggestion: req.body.suggestion,
+        more: req.body.more
+    }
+    list.createIcon(obj).then((data) => {
+        res.status(200).json({data: data});   
+        res.end(); 
+    }).catch((err) => {
+        res.json({isOk: false, error: err})
+        res.status(500)
+        res.end()
+    });
+});
+
 route.post('/markasread', (req, res) => {
     let obj = {
         _id: req.body._id,
