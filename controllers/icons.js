@@ -45,6 +45,28 @@ route.post('/update', (req, res) => {
     });
 });
 
+route.post('/delete', (req, res) => {
+    list.deleteIcon(req.body._id).then((data) => {
+        res.status(200).json({data: data});   
+        res.end(); 
+    }).catch((err) => {
+        res.json({isOk: false, error: err})
+        res.status(500)
+        res.end()
+    });
+});
+
+route.post('/removePathFromIcon', (req, res) => {
+    list.removePath(req.body._id, path).then((data) => {
+        res.status(200).json({data: data});   
+        res.end(); 
+    }).catch((err) => {
+        res.json({isOk: false, error: err})
+        res.status(500)
+        res.end()
+    });
+});
+
 route.post('/createIcon', (req, res) => {
     let obj = {
         title: req.body.title,

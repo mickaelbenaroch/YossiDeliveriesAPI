@@ -134,3 +134,34 @@ exports.createIcon = (obj) => {
     });
 }
 
+exports.deleteIcon = (obj) => {
+    return new Promise(( res, rej) => {
+        let reject = rej, response = res;
+        let icons = db.get().collection('icons');
+        let o_id = new ObjectId(obj);
+        icons.deleteOne({_id: o_id }, (err, result) => {
+                if(err){
+                    reject("error to delete icon")
+                }
+                else{
+                   res("icon deleted succesfully!")
+                }
+            });
+    });
+}
+
+exports.removePath = (iconId, path) => {
+    return new Promise(( res, rej) => {
+        let reject = rej, response = res;
+        let o_id = new ObjectId(iconId);
+        let icons = db.get().collection('icons');
+        icons.update({_id: o_id },{$pull: {paths: path }}, (err, result) => {
+                if(err){
+                    reject("path has not be removed from icon")
+                }
+                else{
+                   res("path has been removed from icon succesfully!")
+                }
+            });
+    });
+}
