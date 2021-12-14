@@ -57,7 +57,7 @@ route.post('/delete', (req, res) => {
 });
 
 route.post('/removePathFromIcon', (req, res) => {
-    list.removePath(req.body._id, path).then((data) => {
+    list.removePath(req.body._id, req.body.path).then((data) => {
         res.status(200).json({data: data});   
         res.end(); 
     }).catch((err) => {
