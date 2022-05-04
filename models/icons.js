@@ -98,21 +98,25 @@ exports.createMissing = (obj) => {
                 }
                 else{
                     console.log('pass: ' + process.env.EMAILP);
-                    transporter.sendMail(mailOptions, function(error, info){
-                        if (error) {
-                          console.log(error);
-                          reject("error to create new car and send email" + error);
-                        } else {
-                            transporter.sendMail(mailOptions2, function(error, info){
-                                if (error) {
-                                  console.log(error);
-                                  reject("error to create new car and send email" + error);
-                                } else {
-                                  response(true)
-                                }
-                            });
-                        }
-                    });
+                    try {
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if (error) {
+                              console.log(error);
+                              reject("error to create new car and send email" + error);
+                            } else {
+                                transporter.sendMail(mailOptions2, function(error, info){
+                                    if (error) {
+                                      console.log(error);
+                                      reject("error to create new car and send email" + error);
+                                    } else {
+                                      response(true)
+                                    }
+                                });
+                            }
+                        });
+                    } catch (ex ) {
+                        response(false);
+                    }
                 }
             });
     });
